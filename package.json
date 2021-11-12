@@ -13,12 +13,17 @@
     "next": "latest",
     "prop-types": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-google-login": "^5.2.2",
+    "react-simple-oauth2-login": "^0.5.3"
   },
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start",
     "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+  },
+  "devDependencies": {
+    "react-router-dom": "^6.0.2"
   }
 }
