@@ -9,6 +9,7 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "^5.0.3",
     "@mui/material": "latest",
+    "axios": "^0.24.0",
     "clsx": "latest",
     "next": "latest",
     "prop-types": "latest",
