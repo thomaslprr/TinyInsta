@@ -12,9 +12,9 @@ import axios from "axios";
 import {useState} from "react";
 
 export default function Personnes() {
-    const [res,setRes]=useState([createData(1,"Loading...","Loading" ,"Loading...","")]);
-    function createData(id,url,name,followers,following) {
-        return {id,url,name,followers,following};
+    const [res,setRes]=useState([]);
+    function createData(id,url,name,followers,following,abonne) {
+        return {id,url,name,followers,following,abonne};
     }
 
   useEffect(()=> {
@@ -25,7 +25,7 @@ export default function Personnes() {
           let resTmp = [];
           resultat.items.map((row)=> {
               if(row.properties.email != email) {
-                  resTmp.push(createData(row.properties.email, row.properties.imageUrl, row.properties.name, row.properties.cptFollower, row.properties.cptFollowing))
+                  resTmp.push(createData(row.properties.email, row.properties.imageUrl, row.properties.name, row.properties.cptFollower, row.properties.cptFollowing,0))
               }
           });
           setRes(resTmp);
