@@ -11,6 +11,7 @@
     "@mui/material": "latest",
     "axios": "^0.24.0",
     "clsx": "latest",
+    "firebase": "^7.15.0",
     "next": "latest",
     "prop-types": "latest",
     "react": "latest",
@@ -22,5 +23,8 @@
     "build": "next build",
     "start": "next start",
     "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+  },
+  "devDependencies": {
+    "uuid": "^8.3.2"
   }
 }

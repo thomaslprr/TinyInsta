@@ -15,9 +15,7 @@ import {useEffect} from "react";
 import axios from "axios";
 import {useState} from "react";
 import Avatar from "@mui/material/Avatar";
-import Badge from "@mui/material/Badge";
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
 
 export default function Index() {
 

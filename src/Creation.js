@@ -11,12 +11,16 @@ import {PhotoCamera} from "@mui/icons-material";
 import styled from "@emotion/styled";
 import ImageIcon from '@mui/icons-material/Image';
 import Box from "@mui/material/Box";
+import UploadImage from "../src/UploadImage";
+
 
 const Input = styled('input')({
     display: 'none',
 });
 
 export default function Creation() {
+
+
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -37,30 +41,7 @@ export default function Creation() {
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Poster une photo</DialogTitle>
                 <DialogContent>
-                    <Box sx={{ mb: 2 }}>
-                    <label htmlFor="icon-button-file">
-                        <Input accept="image/*" id="icon-button-file" type="file" />
-                        <Button variant="contained" endIcon={<PhotoCamera />} color="primary" aria-label="upload picture" component="span">
-                            Choisir la photo
-                        </Button>
-                    </label>
-                    </Box>
-                    <Box
-                        component="form"
-                        sx={{
-                            '& .MuiTextField-root': { m: 1, width: '25ch' },
-                        }}
-                        noValidate
-                        autoComplete="off"
-                    >
-                    <TextField
-                        id="outlined-multiline-static"
-                        label="Commentaire"
-                        multiline
-                        rows={4}
-                        placeholder="Ecris ton commentaire"
-                    />
-                    </Box>
+                    <UploadImage></UploadImage>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Annuler</Button>
