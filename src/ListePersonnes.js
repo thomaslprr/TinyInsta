@@ -8,50 +8,53 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from "@mui/material/Button";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import Avatar from "@mui/material/Avatar";
+import {useState} from "react";
+import {useEffect} from "react";
 
-function createData(name, calories, fat, carbs) {
-    return { name, calories, fat, carbs};
-}
 
-const rows = [
-    createData('Lucas LELIEVRE', 159, 6.0, 24),
-    createData('Alex MAINGUY', 237, 9.0, 37),
-    createData('Robin POURTAUD', 262, 16.0, 24),
-    createData('Thomas LAPIERRE', 305, 12, 67)
-];
+export default function ListePersonnes({data}) {
 
-export default function ListePersonnes() {
-    return (
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Nom</TableCell>
-                        <TableCell align="right">Abonnés</TableCell>
-                        <TableCell align="right">Abonnements</TableCell>
-                        <TableCell align="right"></TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {rows.map((row) => (
-                        <TableRow
-                            key={row.name}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                            <TableCell component="th" scope="row">
-                                {row.name}
-                            </TableCell>
-                            <TableCell align="right">{row.calories}</TableCell>
-                            <TableCell align="right">{row.fat}</TableCell>
-                            <TableCell align="right">
-                                <Button variant="outlined" startIcon={<PersonAddIcon />}>
-                                S'abonner
-                            </Button>
-                            </TableCell>
+        const [dataToShow,setDataToShow]= useState(data);
+
+        useEffect(()=> {
+            setDataToShow(data);
+        },[data])
+
+        return (
+
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell align="center"></TableCell>
+                            <TableCell>Nom</TableCell>
+                            <TableCell align="right">Abonnés</TableCell>
+                            <TableCell align="right">Abonnements</TableCell>
+                            <TableCell align="right"></TableCell>
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
-    );
+                    </TableHead>
+                    <TableBody>
+                        {dataToShow.map((row) => (
+                            <TableRow
+                                key={row.id}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell align="right"><Avatar alt="Remy Sharp" src={row.url} /></TableCell>
+                                <TableCell component="th" scope="row">
+                                    {row.name}
+                                </TableCell>
+                                <TableCell align="right">{row.followers}</TableCell>
+                                <TableCell align="right">{row.following}</TableCell>
+                                <TableCell align="right">
+                                    <Button variant="outlined" startIcon={<PersonAddIcon />}>
+                                        S'abonner
+                                    </Button>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        );
 }
