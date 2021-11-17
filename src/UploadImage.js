@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import firebase from '../utils/firebase';
 import { v4 as uuid } from 'uuid';
 import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 
 export default function UploadImage() {
 
@@ -52,6 +53,7 @@ export default function UploadImage() {
                 ? imageUrl.map(({ id, url }) => {
                     return (
                         <div key={id}>
+                            <br/><br/>
                             <img src={url} alt=""  width="75%" height="75%" />
                             <br/>
                             <Button onClick={() => deleteImage(id)}>Delete</Button>
@@ -59,6 +61,16 @@ export default function UploadImage() {
                     );
                 })
                 : ''}
+
+                <br/><br/>
+                <TextField
+                id="outlined-multiline-static"
+                label="Commentaire"
+                multiline
+                rows={4}
+                fullWidth={10}
+                placeholder="Ecris ton commentaire"
+            />
         </div>
     );
 }

@@ -38,7 +38,7 @@ export default function Creation() {
             </Button>
 
 
-            <Dialog open={open} onClose={handleClose}>
+            <Dialog open={open} onClose={handleClose} fullWidth={20}>
                 <DialogTitle>Poster une photo</DialogTitle>
                 <DialogContent>
                     <UploadImage></UploadImage>
