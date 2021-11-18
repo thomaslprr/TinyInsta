@@ -1,23 +1,15 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import IconButton from "@mui/material/IconButton";
-import {PhotoCamera} from "@mui/icons-material";
-import styled from "@emotion/styled";
 import ImageIcon from '@mui/icons-material/Image';
-import Box from "@mui/material/Box";
 import UploadImage from "../src/UploadImage";
 import {useState} from "react";
+import axios from "axios";
 
 
-const Input = styled('input')({
-    display: 'none',
-});
 
 export default function Creation() {
 
@@ -26,13 +18,23 @@ export default function Creation() {
 
     const [commentaire, setCommentaire] = useState("");
     const [linkImage,setLinkImage] = useState("");
+    const [isCommentaire,setIsCommentaire] = useState(false);
+    const [isLinkImage,setIsLinkImage] = useState(false);
 
     const handleChange = (event) => {
+        setIsCommentaire(true);
+        if(event.target.value.trim().length == 0){
+            setIsCommentaire(false);
+        }
         setCommentaire(event.target.value);
     };
 
     const handleChangeUrl = (url) => {
-        console.log("URL change");
+        if(url==""){
+            setIsLinkImage(false);
+        }else{
+            setIsLinkImage(true);
+        }
         setLinkImage(url);
     };
 
@@ -42,6 +44,22 @@ export default function Creation() {
 
     const handleClose = () => {
         setOpen(false);
+    };
+
+    const handlePoster = () => {
+        let email = localStorage.getItem("email");
+        let post = {email:email,image:linkImage,description:commentaire};
+
+        axios.post('https://tinygram2021.appspot.com/_ah/api/myApi/v1/post',post)
+            .then(response => {
+                let resultat = JSON.parse(response.request.response);
+                console.log("RESULTAT");
+                console.log(resultat);
+                setOpen(false);
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
     };
 
     return (
@@ -58,7 +76,7 @@ export default function Creation() {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Annuler</Button>
-                    <Button onClick={handleClose}>Poster</Button>
+                    <Button onClick={handlePoster} disabled={!isCommentaire || !isLinkImage}>Poster</Button>
                 </DialogActions>
             </Dialog>
         </div>

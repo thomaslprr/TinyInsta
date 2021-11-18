@@ -39,7 +39,6 @@ export default function UploadImage({setUrl,setCommentaire}) {
     };
 
 
-
     useEffect(() => {
         setEmail(localStorage.getItem("email"));
     }, [imageUrl]);
