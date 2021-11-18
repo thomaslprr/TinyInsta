@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
-export default function UploadImage() {
+export default function UploadImage({setUrl,setCommentaire}) {
 
     const [email,setEmail] = useState("");
     const [imageUrl, setImageUrl] = useState([]);
@@ -21,6 +21,7 @@ export default function UploadImage() {
         storageRef.getDownloadURL().then((url) => {
             const newState = [{ id, url }];
             setImageUrl(newState);
+            setUrl(url);
             console.log("URL DE L'IMAGE : "+url);
             setIsImageChossen(true);
         });
@@ -30,11 +31,14 @@ export default function UploadImage() {
     const deleteImage = (id) => {
         const storageRef = firebase.storage().ref(email).child(id);
         storageRef.delete().then(() => {
-            setImageUrl([])
+            setImageUrl([]);
+            setUrl("");
             console.log("deleted with success")
             setIsImageChossen(false);
         });
     };
+
+
 
     useEffect(() => {
         setEmail(localStorage.getItem("email"));
@@ -68,8 +72,9 @@ export default function UploadImage() {
                 label="Commentaire"
                 multiline
                 rows={4}
-                fullWidth={10}
+                fullWidth={true}
                 placeholder="Ecris ton commentaire"
+                onChange={setCommentaire}
             />
         </div>
     );

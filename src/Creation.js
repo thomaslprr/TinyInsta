@@ -12,6 +12,7 @@ import styled from "@emotion/styled";
 import ImageIcon from '@mui/icons-material/Image';
 import Box from "@mui/material/Box";
 import UploadImage from "../src/UploadImage";
+import {useState} from "react";
 
 
 const Input = styled('input')({
@@ -22,6 +23,18 @@ export default function Creation() {
 
 
     const [open, setOpen] = React.useState(false);
+
+    const [commentaire, setCommentaire] = useState("");
+    const [linkImage,setLinkImage] = useState("");
+
+    const handleChange = (event) => {
+        setCommentaire(event.target.value);
+    };
+
+    const handleChangeUrl = (url) => {
+        console.log("URL change");
+        setLinkImage(url);
+    };
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -38,10 +51,10 @@ export default function Creation() {
             </Button>
 
 
-            <Dialog open={open} onClose={handleClose} fullWidth={20}>
+            <Dialog open={open} onClose={handleClose} fullWidth={true}>
                 <DialogTitle>Poster une photo</DialogTitle>
                 <DialogContent>
-                    <UploadImage></UploadImage>
+                    <UploadImage setUrl={handleChangeUrl} setCommentaire={handleChange}></UploadImage>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Annuler</Button>
