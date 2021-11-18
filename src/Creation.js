@@ -11,6 +11,8 @@ import axios from "axios";
 
 
 
+
+
 export default function Creation() {
 
 
@@ -20,6 +22,8 @@ export default function Creation() {
     const [linkImage,setLinkImage] = useState("");
     const [isCommentaire,setIsCommentaire] = useState(false);
     const [isLinkImage,setIsLinkImage] = useState(false);
+    const [loading,setLoading] = useState(false);
+    const [txtButton,setTxtButton] = useState("Poster");
 
     const handleChange = (event) => {
         setIsCommentaire(true);
@@ -49,16 +53,25 @@ export default function Creation() {
     const handlePoster = () => {
         let email = localStorage.getItem("email");
         let post = {email:email,image:linkImage,description:commentaire};
-
+        setLoading(true);
+        setTxtButton("Loading...");
         axios.post('https://tinygram2021.appspot.com/_ah/api/myApi/v1/post',post)
             .then(response => {
                 let resultat = JSON.parse(response.request.response);
                 console.log("RESULTAT");
                 console.log(resultat);
                 setOpen(false);
+                setLoading(false);
+                setTxtButton("Poster");
+                setCommentaire("");
+                setLinkImage("");
+                setIsCommentaire(false);
+                setIsLinkImage(false);
             })
             .catch(error => {
                 console.error('There was an error!', error);
+                setLoading(false);
+                setTxtButton("Poster");
             });
     };
 
@@ -76,7 +89,7 @@ export default function Creation() {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Annuler</Button>
-                    <Button onClick={handlePoster} disabled={!isCommentaire || !isLinkImage}>Poster</Button>
+                    <Button onClick={handlePoster} disabled={(!isCommentaire || !isLinkImage)||loading}>{txtButton}</Button>
                 </DialogActions>
             </Dialog>
         </div>
