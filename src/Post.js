@@ -9,10 +9,28 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import {useEffect} from "react";
 
 
-export default function RecipeReviewCard({pseudo,date,img,description,cptJaime}) {
+export default function RecipeReviewCard({pseudo,date,img,description,cptJaime,addLike,email,alreadyLike}) {
 
+    useEffect(()=> {
+        console.log(description+"    a aimé : "+alreadyLike);
+    },[])
+
+
+    const showLikeButton = () => {
+        if(alreadyLike){
+            return (<IconButton aria-label="add to favorites" >
+                <FavoriteIcon style={{fill: "red"}}/>
+            </IconButton>);
+        }else{
+            return (<IconButton aria-label="add to favorites" onClick={()=>addLike(date,email)}>
+                <FavoriteBorderIcon />
+            </IconButton>);
+        }
+    }
 
   return (
     <Card sx={{ maxWidth: 345,mb:4 }}>
@@ -23,7 +41,7 @@ export default function RecipeReviewCard({pseudo,date,img,description,cptJaime})
           </Avatar>
         }
         title={pseudo}
-        subheader={date}
+        subheader={new Date(date).toLocaleString()}
       />
       <CardMedia
         component="img"
@@ -37,9 +55,9 @@ export default function RecipeReviewCard({pseudo,date,img,description,cptJaime})
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteBorderIcon />
-        </IconButton>
+
+          {showLikeButton()}
+
           {cptJaime} J'aime
       </CardActions>
     </Card>

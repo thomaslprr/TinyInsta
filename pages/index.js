@@ -43,6 +43,33 @@ export default function Index() {
            });
    };
 
+   const updatePostLiked = (date, emailCreate) => {
+        let tmp = [... response];
+        for(let i=0;i<tmp.length;i++){
+            if(tmp[i].properties.email == emailCreate && tmp[i].properties.date == date){
+                tmp[i].properties.cptLikes =  parseInt(tmp[i].properties.cptLikes)+1 ;
+                tmp[i].properties.aAime = true;
+                break;
+            }
+        }
+        setResponse(tmp);
+   };
+
+    const handleClickLike = (date,emailCreateur) => {
+        let email = localStorage.getItem("email");
+        axios.put('https://tinygram2021.appspot.com/_ah/api/myApi/v1/post/like',
+            {datePhoto:new Date(date).getTime(),emailCreateurPhoto:emailCreateur,emailUserQuiLike:email} )
+            .then(result => {
+                let res = JSON.parse(result.request.response);
+                console.log("picture liked")
+                updatePostLiked(new Date(date).toISOString(),emailCreateur);
+
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
+    };
+
   useEffect(()=> {
     let email = localStorage.getItem("email");
     axios.post('https://tinygram2021.appspot.com/_ah/api/myApi/v1/friend/'+email,null )
@@ -77,8 +104,9 @@ export default function Index() {
           return(
               <div>
                   {response.map((row) => {
-                    return <RecipeReviewCard pseudo={row.properties.pseudo} date={row.properties.date}
-                  img={row.properties.image} description={row.properties.description} cptJaime={row.properties.cptLikes}/>
+                    return <RecipeReviewCard key={row.properties.email+""+row.properties.date} pseudo={row.properties.pseudo} date={row.properties.date}
+                  img={row.properties.image} description={row.properties.description} cptJaime={row.properties.cptLikes}
+                                             email={row.properties.email} alreadyLike={row.properties.aAime} addLike={handleClickLike}/>
               })}
               </div>
             )
