@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f0f14df-5315-46f3-9836-85211fb72efe" name="Default Changelist" comment="" />
+    <list default="true" id="3f0f14df-5315-46f3-9836-85211fb72efe" name="Default Changelist" comment="add connexion with google and load information">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Creation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Creation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Post.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +19,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1zPUASazbDOV8knA78M9DYOFncF" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -22,6 +31,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -49,14 +59,106 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1634049073738</updated>
-      <workItem from="1634049080668" duration="4765000" />
+      <workItem from="1634049080668" duration="4928000" />
+      <workItem from="1636725694347" duration="2951000" />
+      <workItem from="1637087347208" duration="3475000" />
+      <workItem from="1637142627914" duration="5905000" />
+      <workItem from="1637156071737" duration="15026000" />
+      <workItem from="1637258914545" duration="3729000" />
+      <workItem from="1637317123014" duration="3257000" />
     </task>
+    <task id="LOCAL-00001" summary="add connexion with google and load information">
+      <created>1637092855527</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1637092855527</updated>
+    </task>
+    <task id="LOCAL-00002" summary="show friends">
+      <created>1637149396989</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1637149396989</updated>
+    </task>
+    <task id="LOCAL-00003" summary="follow friends">
+      <created>1637161225511</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1637161225511</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add picture to server">
+      <created>1637173627194</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1637173627194</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add image post">
+      <created>1637270423699</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1637270423699</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add connexion with google and load information">
+      <created>1637271749790</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1637271749790</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add connexion with google and load information">
+      <created>1637273029249</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1637273029249</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="show friends" />
+    <MESSAGE value="follow friends" />
+    <MESSAGE value="add picture to server" />
+    <MESSAGE value="add image post" />
+    <MESSAGE value="add connexion with google and load information" />
+    <option name="LAST_COMMIT_MESSAGE" value="add connexion with google and load information" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="314" y="52" key="CommitChangelistDialog2" timestamp="1637273029064">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="314" y="52" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1637273029064" />
+    <state width="1419" height="245" key="GridCell.Tab.0.bottom" timestamp="1637174202179">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1419" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1637174202179" />
+    <state width="1419" height="245" key="GridCell.Tab.0.bottom/0.22.1440.801@0.22.1440.801" timestamp="1637173758837" />
+    <state width="1419" height="245" key="GridCell.Tab.0.center" timestamp="1637174202177">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1419" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1637174202177" />
+    <state width="1419" height="245" key="GridCell.Tab.0.center/0.22.1440.801@0.22.1440.801" timestamp="1637173758835" />
+    <state width="1419" height="245" key="GridCell.Tab.0.left" timestamp="1637174202177">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1419" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1637174202177" />
+    <state width="1419" height="245" key="GridCell.Tab.0.left/0.22.1440.801@0.22.1440.801" timestamp="1637173758834" />
+    <state width="1419" height="245" key="GridCell.Tab.0.right" timestamp="1637174202178">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1419" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1637174202178" />
+    <state width="1419" height="245" key="GridCell.Tab.0.right/0.22.1440.801@0.22.1440.801" timestamp="1637173758836" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1637092898991">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1637092898991" />
     <state x="386" y="212" width="667" height="476" key="find.popup" timestamp="1634054214548">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

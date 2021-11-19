@@ -10,11 +10,7 @@ import {useState} from "react";
 import axios from "axios";
 
 
-
-
-
 export default function Creation() {
-
 
     const [open, setOpen] = React.useState(false);
 

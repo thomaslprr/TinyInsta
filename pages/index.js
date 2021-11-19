@@ -20,6 +20,28 @@ import Grid from "@mui/material/Grid";
 export default function Index() {
 
   const [user,setUser] = useState({"imageUrl":""});
+  const [offset, setOffset] = useState(0);
+  const [response,setResponse] = useState([]);
+  const [loading,setLoading] = useState(true);
+  const [more,setMore] = useState(false);
+
+   const handleShowMore = () => {
+       let email = localStorage.getItem("email");
+       axios.get('https://tinygram2021.appspot.com/_ah/api/myApi/v1/post/'+email+'/'+offset )
+           .then(result => {
+               let res = JSON.parse(result.request.response);
+               setResponse(response.concat(res.items));
+               setLoading(false);
+               if(15-res.items.length > 0){
+                   setMore(false);
+               }else{
+                   setMore(true);
+               }
+           })
+           .catch(error => {
+               console.error('There was an error!', error);
+           });
+   };
 
   useEffect(()=> {
     let email = localStorage.getItem("email");
@@ -27,12 +49,42 @@ export default function Index() {
         .then(response => {
           let res = JSON.parse(response.request.response);
           setUser(res.properties);
-          console.log(res.properties)
+          console.log(res.properties);
+          setOffset(offset+15);
         })
         .catch(error => {
           console.error('There was an error!', error);
         });
-  },[])
+
+        handleShowMore();
+
+
+
+  },[]);
+
+  const showPost = (bool) => {
+      if(bool){
+          return (
+              <div>
+              <LoadPost/>
+              <LoadPost/>
+              <LoadPost/>
+              <LoadPost/>
+              <LoadPost/>
+              </div>
+          )
+      }else{
+          return(
+              <div>
+                  {response.map((row) => {
+                    return <RecipeReviewCard pseudo={row.properties.pseudo} date={row.properties.date}
+                  img={row.properties.image} description={row.properties.description} cptJaime={row.properties.cptLikes}/>
+              })}
+              </div>
+            )
+
+      }
+  };
 
   return (
     <Container maxWidth="sm">
@@ -57,17 +109,12 @@ export default function Index() {
           Ajouter des personnes
         </Button>
 
-        <LoadPost/>
-        <LoadPost/>
-        <LoadPost/>
-        <LoadPost/>
-        <LoadPost/>
-        <RecipeReviewCard/>
-        <RecipeReviewCard/>
-        <RecipeReviewCard/>
-        <Button variant="contained" endIcon={<AddIcon />}>
-          Voir plus
-        </Button>
+          {showPost(loading)}
+
+          {more ?<Button variant="contained" endIcon={<AddIcon />} onClick={handleShowMore}>
+              Voir plus
+          </Button> : <div></div> }
+
         <ProTip />
         <Copyright />
       </Box>
