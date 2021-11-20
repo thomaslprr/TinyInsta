@@ -5,10 +5,10 @@ import Router from "next/router";
 const clientId =
     '336706060084-q0bhshelogk7vg0rs0dm3163fr99vsri.apps.googleusercontent.com';
 
-function Logout() {
+const Logout = () => {
+
     const onSuccess = () => {
         console.log('Logout made successfully');
-        alert('Logout made successfully ✌');
         Router.push('/login');
     };
 

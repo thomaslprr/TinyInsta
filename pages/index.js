@@ -27,17 +27,17 @@ export default function Index() {
   const [loading,setLoading] = useState(true);
   const [more,setMore] = useState(false);
 
-   const handleShowMore = () => {
-       let email = localStorage.getItem("email");
-       axios.get('https://tinygram2021.appspot.com/_ah/api/myApi/v1/post/'+email+'/'+offset )
+   const handleShowMore = async () => {
+       const email = await handleCheckToken();
+       axios.get('https://tinygram2021.appspot.com/_ah/api/myApi/v1/post/' + email + '/' + offset)
            .then(result => {
                let res = JSON.parse(result.request.response);
                setResponse(response.concat(res.items));
                setLoading(false);
-               setOffset(offset+15);
-               if(15-res.items.length > 0){
+               setOffset(offset + 15);
+               if (15 - res.items.length > 0) {
                    setMore(false);
-               }else{
+               } else {
                    setMore(true);
                }
            })
@@ -58,14 +58,14 @@ export default function Index() {
         setResponse(tmp);
    };
 
-    const handleClickLike = (date,emailCreateur) => {
-        let email = localStorage.getItem("email");
+    const handleClickLike = async (date, emailCreateur) => {
+        const email = await handleCheckToken();
         axios.put('https://tinygram2021.appspot.com/_ah/api/myApi/v1/post/like',
-            {datePhoto:new Date(date).getTime(),emailCreateurPhoto:emailCreateur,emailUserQuiLike:email} )
+            {datePhoto: new Date(date).getTime(), emailCreateurPhoto: emailCreateur, emailUserQuiLike: email})
             .then(result => {
                 let res = JSON.parse(result.request.response);
                 console.log("picture liked")
-                updatePostLiked(new Date(date).toISOString(),emailCreateur);
+                updatePostLiked(new Date(date).toISOString(), emailCreateur);
 
             })
             .catch(error => {
@@ -73,27 +73,24 @@ export default function Index() {
             });
     };
 
+    const basicInfo = async () => {
+        const mail = await handleCheckToken();
+        axios.post('https://tinygram2021.appspot.com/_ah/api/myApi/v1/friend/'+mail,null )
+            .then(response => {
+                let res = JSON.parse(response.request.response);
+                setUser(res.properties);
+                console.log("ok 2");
+
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
+    }
+
   useEffect(()=> {
 
-
-      let mail = localStorage.getItem("email");
-      axios.post('https://tinygram2021.appspot.com/_ah/api/myApi/v1/friend/'+mail,null )
-          .then(response => {
-              let res = JSON.parse(response.request.response);
-              setUser(res.properties);
-              console.log(res.properties);
-              console.log("on est allll");
-          })
-          .catch(error => {
-              console.error('There was an error!', error);
-          });
-
+      basicInfo();
       handleShowMore();
-
-
-
-
-
 
   },[]);
 

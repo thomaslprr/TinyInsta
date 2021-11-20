@@ -1,29 +1,37 @@
-import React from 'react';
-import { GoogleLogout } from 'react-google-login';
+import React, {useEffect} from 'react';
+import {useGoogleLogout} from "react-google-login";
 import Router from "next/router";
 
-const clientId =
-    '336706060084-q0bhshelogk7vg0rs0dm3163fr99vsri.apps.googleusercontent.com';
+const logout = () => {
 
-function Logout() {
-    const onSuccess = () => {
-        console.log('Logout made successfully');
+    const clientId =
+        '336706060084-q0bhshelogk7vg0rs0dm3163fr99vsri.apps.googleusercontent.com';
+
+    const onFailure = () => {
+        console.log('Handle failure cases');
+    };
+
+    const onLogoutSuccess = (res) => {
+        console.log('Logged out Success');
         Router.push('/login');
     };
 
+    const { signOut } = useGoogleLogout({
+        clientId,
+        onLogoutSuccess,
+        onFailure,
+    });
+
+    useEffect(()=> {
+        signOut();
+    },[signOut])
     return (
-        <div>
-            Erreur avec vos identifiants Google, veuillez vous déconnecter.
-            <br/>
-            <GoogleLogout
-                clientId={clientId}
-                buttonText="Logout"
-                onLogoutSuccess={onSuccess}
-            ></GoogleLogout>
-        </div>
-    );
+        <div></div>
+    )
+
 }
 
-export default Logout;
+export default logout;
+
 
 
