@@ -13,7 +13,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import {useEffect} from "react";
 
 
-export default function RecipeReviewCard({pseudo,date,img,description,cptJaime,addLike,email,alreadyLike}) {
+export default function RecipeReviewCard({pseudo,date,img,description,cptJaime,addLike,email,alreadyLike,profilImage}) {
 
     useEffect(()=> {
         console.log(description+"    a aimé : "+alreadyLike);
@@ -36,9 +36,8 @@ export default function RecipeReviewCard({pseudo,date,img,description,cptJaime,a
     <Card sx={{ maxWidth: 345,mb:4 }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
-          </Avatar>
+          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe" src={profilImage}/>
+
         }
         title={pseudo}
         subheader={new Date(date).toLocaleString()}

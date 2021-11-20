@@ -12,6 +12,7 @@
     "axios": "^0.24.0",
     "clsx": "latest",
     "firebase": "^7.15.0",
+    "google-auth-library": "^7.10.2",
     "next": "latest",
     "prop-types": "latest",
     "react": "latest",

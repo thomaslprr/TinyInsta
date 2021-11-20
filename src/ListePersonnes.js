@@ -47,7 +47,7 @@ export default function ListePersonnes({data}) {
         },[data])
 
         function showButton(abonne,id){
-            if(abonne==1){
+            if(abonne){
                 return (<Button variant="contained" startIcon={<PersonIcon />}>
                     Abonné
                 </Button>)

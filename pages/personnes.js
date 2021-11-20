@@ -10,29 +10,47 @@ import ListePersonnes from "../src/ListePersonnes";
 import {useEffect} from "react";
 import axios from "axios";
 import {useState} from "react";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function Personnes() {
     const [res,setRes]=useState([]);
+    const [offset,setOffset] = useState(0);
+    const [more,setMore] = useState(false);
+    const [loading,setLoading] = useState(true);
+
     function createData(id,url,name,followers,following,abonne) {
         return {id,url,name,followers,following,abonne};
     }
 
+    const handleShowMore = () => {
+        setLoading(true);
+        let email = localStorage.getItem("email");
+        axios.get('https://tinygram2021.appspot.com/_ah/api/myApi/v1/friends/'+email+'/'+offset )
+            .then(response => {
+                let resultat = JSON.parse(response.request.response);
+                console.log("RESSSS");
+                console.log(resultat);
+                let resTmp = [];
+                resultat.items.map((row)=> {
+                    resTmp.push(createData(row.properties.email, row.properties.imageUrl, row.properties.name,
+                        row.properties.cptFollower, row.properties.cptFollowing,row.properties.isFollowing))
+                });
+                setRes(res.concat(resTmp));
+                setOffset(offset+30);
+                if(30-resultat.items.length > 0){
+                    setMore(false);
+                }else{
+                    setMore(true);
+                }
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
+    };
+
   useEffect(()=> {
-      let email = localStorage.getItem("email");
-      axios.get('https://tinygram2021.appspot.com/_ah/api/myApi/v1/friends/'+email )
-        .then(response => {
-          let resultat = JSON.parse(response.request.response);
-          let resTmp = [];
-          resultat.items.map((row)=> {
-              if(row.properties.email != email) {
-                  resTmp.push(createData(row.properties.email, row.properties.imageUrl, row.properties.name, row.properties.cptFollower, row.properties.cptFollowing,0))
-              }
-          });
-          setRes(resTmp);
-        })
-        .catch(error => {
-          console.error('There was an error!', error);
-        });
+      handleShowMore();
   },[])
 
   return (
@@ -45,6 +63,11 @@ export default function Personnes() {
           Retour
         </Button>
         <ListePersonnes data={res}/>
+          {loading ? "Chargement..." : ""}
+          {more ?<Button variant="contained" endIcon={<AddIcon />} onClick={handleShowMore}>
+              Voir plus
+          </Button> : <div></div> }
+
         <ProTip />
         <Copyright />
       </Box>
