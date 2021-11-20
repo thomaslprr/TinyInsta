@@ -11,6 +11,7 @@ import {useEffect} from "react";
 import axios from "axios";
 import {useState} from "react";
 import AddIcon from "@mui/icons-material/Add";
+import handleCheckToken from "../utils/checkToken";
 
 export default function Personnes() {
     const [res,setRes]=useState([]);
@@ -22,9 +23,9 @@ export default function Personnes() {
         return {id,url,name,followers,following,abonne};
     }
 
-    const handleShowMore = () => {
+    const handleShowMore = async () => {
         setLoading(true);
-        let email = localStorage.getItem("email");
+        let email = handleCheckToken();
         axios.get('https://tinygram2021.appspot.com/_ah/api/myApi/v1/friends/'+email+'/'+offset )
             .then(response => {
                 let resultat = JSON.parse(response.request.response);
