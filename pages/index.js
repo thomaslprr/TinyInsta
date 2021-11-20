@@ -16,9 +16,12 @@ import axios from "axios";
 import {useState} from "react";
 import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/material/Grid";
+import Logout from "../src/Logout";
+import handleCheckToken from "../utils/checkToken";
 
 export default function Index() {
 
+  const [emailOfficiel,setEmailOfficiel] = useState("");
   const [user,setUser] = useState({"imageUrl":""});
   const [offset, setOffset] = useState(0);
   const [response,setResponse] = useState([]);
@@ -32,6 +35,7 @@ export default function Index() {
                let res = JSON.parse(result.request.response);
                setResponse(response.concat(res.items));
                setLoading(false);
+               setOffset(offset+15);
                if(15-res.items.length > 0){
                    setMore(false);
                }else{
@@ -71,13 +75,14 @@ export default function Index() {
     };
 
   useEffect(()=> {
-    let email = localStorage.getItem("email");
+      let email = handleCheckToken();
+
     axios.post('https://tinygram2021.appspot.com/_ah/api/myApi/v1/friend/'+email,null )
         .then(response => {
           let res = JSON.parse(response.request.response);
           setUser(res.properties);
           console.log(res.properties);
-          setOffset(offset+15);
+          console.log("on est allll");
         })
         .catch(error => {
           console.error('There was an error!', error);
@@ -106,7 +111,8 @@ export default function Index() {
                   {response.map((row) => {
                     return <RecipeReviewCard key={row.properties.email+""+row.properties.date} pseudo={row.properties.pseudo} date={row.properties.date}
                   img={row.properties.image} description={row.properties.description} cptJaime={row.properties.cptLikes}
-                                             email={row.properties.email} alreadyLike={row.properties.aAime} addLike={handleClickLike}/>
+                                             email={row.properties.email} alreadyLike={row.properties.aAime}
+                                             addLike={handleClickLike} profilImage={row.properties.profilImageLink}/>
               })}
               </div>
             )
@@ -120,6 +126,9 @@ export default function Index() {
         <Typography variant="h4" component="h1" gutterBottom>
           TinyInsta
         </Typography>
+          <br/>
+          <Logout/>
+          <br/>
         <Grid container spacing={3}>
           <Grid item xs xs={2}>
             <Avatar alt="Remy Sharp" src={user.imageUrl} />

@@ -14,12 +14,13 @@ function Login() {
     const [txt,setTxt] = useState("Veuillez vous connecter avec google !");
 
     const onSuccess = (res) => {
-        console.log('Login Success: currentUser:', res.profileObj);
+        console.log(res);
+        localStorage.setItem('email', res.profileObj.email);
+        localStorage.setItem('token', res.tokenId);
         refreshTokenSetup(res);
         axios.post('https://tinygram2021.appspot.com/_ah/api/myApi/v1/friend/'+res.profileObj.email,res.profileObj )
             .then(response => {
                 console.log(response);
-                localStorage.setItem('email', res.profileObj.email);
             })
             .catch(error => {
                 console.error('There was an error!', error);
@@ -32,7 +33,7 @@ function Login() {
     const onFailure = (res) => {
         console.log('Login failed: res:', res);
         alert(
-            `Failed to login. 😢 Please ping this to repo owner twitter.com/sivanesh_fiz`
+            `Failed to login. 😢 `
         );
     };
 
