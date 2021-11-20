@@ -21,7 +21,6 @@ import handleCheckToken from "../utils/checkToken";
 
 export default function Index() {
 
-  const [emailOfficiel,setEmailOfficiel] = useState("");
   const [user,setUser] = useState({"imageUrl":""});
   const [offset, setOffset] = useState(0);
   const [response,setResponse] = useState([]);
@@ -75,20 +74,24 @@ export default function Index() {
     };
 
   useEffect(()=> {
-      let email = handleCheckToken();
 
-    axios.post('https://tinygram2021.appspot.com/_ah/api/myApi/v1/friend/'+email,null )
-        .then(response => {
-          let res = JSON.parse(response.request.response);
-          setUser(res.properties);
-          console.log(res.properties);
-          console.log("on est allll");
-        })
-        .catch(error => {
-          console.error('There was an error!', error);
-        });
 
-        handleShowMore();
+      let mail = localStorage.getItem("email");
+      axios.post('https://tinygram2021.appspot.com/_ah/api/myApi/v1/friend/'+mail,null )
+          .then(response => {
+              let res = JSON.parse(response.request.response);
+              setUser(res.properties);
+              console.log(res.properties);
+              console.log("on est allll");
+          })
+          .catch(error => {
+              console.error('There was an error!', error);
+          });
+
+      handleShowMore();
+
+
+
 
 
 
