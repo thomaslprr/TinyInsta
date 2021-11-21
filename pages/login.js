@@ -38,7 +38,7 @@ function Login() {
     return (
         <div>
             <GoogleLogin
-                clientId={process.env.clientId}
+                clientId={process.env.client_id}
                 buttonText="Login"
                 onSuccess={onSuccess}
                 onFailure={onFailure}

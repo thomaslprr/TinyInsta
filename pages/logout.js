@@ -4,7 +4,7 @@ import Router from "next/router";
 
 const logout = () => {
 
-    const clientId = process.env.clientId;
+    const clientId = process.env.client_id;
 
     const onFailure = () => {
         console.log('Handle failure cases');
