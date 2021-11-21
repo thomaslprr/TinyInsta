@@ -6,7 +6,7 @@ import axios from "axios";
 // refresh token
 import { refreshTokenSetup } from '../utils/refreshToken';
 
-const clientId = '336706060084-q0bhshelogk7vg0rs0dm3163fr99vsri.apps.googleusercontent.com';
+const clientId = '336706060084-qql5uihgm5k7nremguao6rfeeh1mptnd.apps.googleusercontent.com';
 
 function Login() {
 
