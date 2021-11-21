@@ -2,8 +2,6 @@ import React from 'react';
 import { GoogleLogout } from 'react-google-login';
 import Router from "next/router";
 
-const clientId =
-    '336706060084-q0bhshelogk7vg0rs0dm3163fr99vsri.apps.googleusercontent.com';
 
 const Logout = () => {
 
@@ -15,7 +13,7 @@ const Logout = () => {
     return (
         <div>
             <GoogleLogout
-                clientId={clientId}
+                clientId={process.env.clientId}
                 buttonText="Logout"
                 onLogoutSuccess={onSuccess}
             ></GoogleLogout>

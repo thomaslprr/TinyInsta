@@ -25,7 +25,7 @@ export default function Personnes() {
 
     const handleShowMore = async () => {
         setLoading(true);
-        let email = handleCheckToken();
+        let email = await handleCheckToken();
         axios.get('https://tinygram2021.appspot.com/_ah/api/myApi/v1/friends/'+email+'/'+offset )
             .then(response => {
                 let resultat = JSON.parse(response.request.response);

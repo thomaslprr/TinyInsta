@@ -6,8 +6,6 @@ import axios from "axios";
 // refresh token
 import { refreshTokenSetup } from '../utils/refreshToken';
 
-const clientId =
-    '336706060084-q0bhshelogk7vg0rs0dm3163fr99vsri.apps.googleusercontent.com';
 
 function Login() {
 
@@ -40,7 +38,7 @@ function Login() {
     return (
         <div>
             <GoogleLogin
-                clientId={clientId}
+                clientId={process.env.clientId}
                 buttonText="Login"
                 onSuccess={onSuccess}
                 onFailure={onFailure}
