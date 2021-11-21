@@ -13,7 +13,6 @@ function Login() {
     const [txt,setTxt] = useState("Veuillez vous connecter avec google !");
 
     const onSuccess = (res) => {
-        console.log(res);
         localStorage.setItem('email', res.profileObj.email);
         localStorage.setItem('token', res.tokenId);
         refreshTokenSetup(res);

@@ -8,6 +8,8 @@ const Logout = () => {
     const clientId = '336706060084-qql5uihgm5k7nremguao6rfeeh1mptnd.apps.googleusercontent.com';
 
     const onSuccess = () => {
+        localStorage.removeItem("email");
+        localStorage.removeItem('token');
         console.log('Logout made successfully');
         Router.push('/login');
     };

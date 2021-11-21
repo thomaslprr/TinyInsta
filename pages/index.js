@@ -85,10 +85,9 @@ export default function Index() {
             .catch(error => {
                 console.error('There was an error!', error);
             });
-    }
+    };
 
-  useEffect(()=> {
-
+  useEffect(()=>{
       basicInfo();
       handleShowMore();
 

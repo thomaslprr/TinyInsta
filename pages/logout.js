@@ -8,9 +8,14 @@ const logout = () => {
 
     const onFailure = () => {
         console.log('Handle failure cases');
+        localStorage.removeItem("email");
+        localStorage.removeItem('token');
+        Router.push('/login');
     };
 
     const onLogoutSuccess = (res) => {
+        localStorage.removeItem("email");
+        localStorage.removeItem('token');
         console.log('Logged out Success');
         Router.push('/login');
     };

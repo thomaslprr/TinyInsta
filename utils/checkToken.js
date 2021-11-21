@@ -15,10 +15,10 @@ async function handleCheckToken(){
     return axios.get('https://oauth2.googleapis.com/tokeninfo?id_token='+token)
         .then(result => {
             let res = JSON.parse(result.request.response);
+
             if(res.email != email){
                 Router.push('/logout');
             }
-            console.log("ok1");
             return res.email;
         })
         .catch(error => {
