@@ -18,14 +18,44 @@ import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/material/Grid";
 import Logout from "../src/Logout";
 import handleCheckToken from "../utils/checkToken";
+import { refreshTokenSetup } from '../utils/refreshToken';
+import Router from "next/router";
+import {GoogleLogin} from "react-google-login";
+
 
 export default function Index() {
+
+    const clientId = '336706060084-qql5uihgm5k7nremguao6rfeeh1mptnd.apps.googleusercontent.com';
+    const [txt,setTxt] = useState("Veuillez vous connecter avec google !");
+    const onSuccess = (res) => {
+        localStorage.setItem('email', res.profileObj.email);
+        localStorage.setItem('token', res.tokenId);
+        setLogged(true);
+        refreshTokenSetup(res);
+        axios.post('https://tinygram2021.appspot.com/_ah/api/myApi/v1/friend/'+res.profileObj.email,res.profileObj )
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
+
+        setTxt("Chargement de la page... Veuillez patienter")
+    };
+
+    const onFailure = (res) => {
+        console.log('Login failed: res:', res);
+        alert(
+            `Failed to login. 😢 `
+        );
+    };
 
   const [user,setUser] = useState({"imageUrl":""});
   const [offset, setOffset] = useState(0);
   const [response,setResponse] = useState([]);
   const [loading,setLoading] = useState(true);
   const [more,setMore] = useState(false);
+  const [logged,setLogged] = useState(false);
 
    const handleShowMore = async () => {
        const email = await handleCheckToken();
@@ -88,10 +118,12 @@ export default function Index() {
     };
 
   useEffect(()=>{
-      basicInfo();
-      handleShowMore();
+      if(logged){
+          basicInfo();
+          handleShowMore();
+      }
 
-  },[]);
+  },[logged]);
 
   const showPost = (bool) => {
       if(bool){
@@ -119,6 +151,55 @@ export default function Index() {
       }
   };
 
+  const showPage = () => {
+      if(!logged){
+          return (<div>
+              <GoogleLogin
+                  clientId={clientId}
+                  buttonText="Login"
+                  onSuccess={onSuccess}
+                  onFailure={onFailure}
+                  cookiePolicy={'single_host_origin'}
+                  style={{ marginTop: '100px' }}
+                  isSignedIn={true}
+              />
+              <br/>
+              {txt}
+          </div>)
+      }else{
+          return(
+              <div>
+              <Logout/>
+              <br/>
+              <Grid container spacing={3}>
+              <Grid item xs xs={2}>
+              <Avatar alt="Remy Sharp" src={user.imageUrl} />
+      </Grid>
+      <Grid item xs>
+      <p>Abonnements : {user.cptFollowing}</p>
+      </Grid>
+      <Grid item xs>
+      <p>Abonnés : {user.cptFollower}</p>
+      </Grid>
+      </Grid>
+
+      <Creation/>
+      <Button component={Link} noLinkStyle href="/personnes" color="primary" endIcon={<PersonAddIcon/>}>
+      Ajouter des personnes
+      </Button>
+
+      {showPost(loading)}
+
+      {more ?<Button variant="contained" endIcon={<AddIcon />} onClick={handleShowMore}>
+      Voir plus
+      </Button> : <div></div> }
+
+      <ProTip />
+              </div>
+          )
+      }
+  }
+
   return (
     <Container maxWidth="sm">
       <Box sx={{ my: 4 }}>
@@ -126,32 +207,7 @@ export default function Index() {
           TinyInsta
         </Typography>
           <br/>
-          <Logout/>
-          <br/>
-        <Grid container spacing={3}>
-          <Grid item xs xs={2}>
-            <Avatar alt="Remy Sharp" src={user.imageUrl} />
-          </Grid>
-          <Grid item xs>
-            <p>Abonnements : {user.cptFollowing}</p>
-          </Grid>
-          <Grid item xs>
-            <p>Abonnés : {user.cptFollower}</p>
-          </Grid>
-        </Grid>
-
-        <Creation/>
-        <Button component={Link} noLinkStyle href="/personnes" color="primary" endIcon={<PersonAddIcon/>}>
-          Ajouter des personnes
-        </Button>
-
-          {showPost(loading)}
-
-          {more ?<Button variant="contained" endIcon={<AddIcon />} onClick={handleShowMore}>
-              Voir plus
-          </Button> : <div></div> }
-
-        <ProTip />
+          {showPage()}
         <Copyright />
       </Box>
     </Container>

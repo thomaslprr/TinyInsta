@@ -13,6 +13,8 @@ import {useState} from "react";
 import {useEffect} from "react";
 import axios from "axios";
 import PersonIcon from '@mui/icons-material/Person';
+import handleCheckToken from "../utils/checkToken";
+
 
 
 export default function ListePersonnes({data}) {
@@ -23,23 +25,26 @@ export default function ListePersonnes({data}) {
             return JSON.parse("{\"follow\":\""+email+"\"}");
         }
 
-        function follow(followEmail){
-            let mail = localStorage.getItem("email");
-            axios.put('https://tinygram2021.appspot.com/_ah/api/myApi/v1/friend/'+mail, createFollow(followEmail))
+        async function follow(followEmail) {
+            let mail = await handleCheckToken();
+            if(mail==null){
+                return;
+            }
+            axios.put('https://tinygram2021.appspot.com/_ah/api/myApi/v1/friend/' + mail, createFollow(followEmail))
                 .then(response => {
                     console.log("success");
                     let dataTmp = [...dataToShow];
-                    for(let i = 0 ; i< dataTmp.length ;i++){
-                        if(dataTmp[i].id == followEmail){
-                            dataTmp[i].abonne= 1 ;
+                    for (let i = 0; i < dataTmp.length; i++) {
+                        if (dataTmp[i].id == followEmail) {
+                            dataTmp[i].abonne = 1;
                             break;
                         }
                     }
                     setDataToShow(dataTmp);
                 })
                 .catch(error => {
-                console.error('There was an error!', error);
-            });
+                    console.error('There was an error!', error);
+                });
         }
 
         useEffect(()=> {

@@ -9,21 +9,23 @@ async function handleCheckToken(){
     const email = localStorage.getItem("email");
 
     if(email == null || token == null) {
-        Router.push('/logout');
+        Router.push('/');
+        return null;
     }
 
     return axios.get('https://oauth2.googleapis.com/tokeninfo?id_token='+token)
         .then(result => {
             let res = JSON.parse(result.request.response);
-
             if(res.email != email){
-                Router.push('/logout');
+                Router.push('/error');
+                return null;
             }
+
             return res.email;
         })
         .catch(error => {
             console.error('There was an error!', error);
-            Router.push('/logout');
+            Router.push('/error');
             return null;
         });
 };

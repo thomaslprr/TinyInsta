@@ -1,6 +1,5 @@
 import React from 'react';
 import { GoogleLogout } from 'react-google-login';
-import Router from "next/router";
 
 
 const Logout = () => {
@@ -10,8 +9,9 @@ const Logout = () => {
     const onSuccess = () => {
         localStorage.removeItem("email");
         localStorage.removeItem('token');
+        localStorage.removeItem('isLogged');
         console.log('Logout made successfully');
-        Router.push('/login');
+        window.location.reload();
     };
 
     return (
@@ -23,6 +23,6 @@ const Logout = () => {
             ></GoogleLogout>
         </div>
     );
-}
+};
 
 export default Logout;
