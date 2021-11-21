@@ -5,6 +5,8 @@ import Router from "next/router";
 
 const Logout = () => {
 
+    const clientId = '336706060084-q0bhshelogk7vg0rs0dm3163fr99vsri.apps.googleusercontent.com';
+
     const onSuccess = () => {
         console.log('Logout made successfully');
         Router.push('/login');
@@ -13,7 +15,7 @@ const Logout = () => {
     return (
         <div>
             <GoogleLogout
-                clientId={process.env.client_id}
+                clientId={clientId}
                 buttonText="Logout"
                 onLogoutSuccess={onSuccess}
             ></GoogleLogout>
