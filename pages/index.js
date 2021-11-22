@@ -30,11 +30,10 @@ export default function Index() {
     const onSuccess = (res) => {
         localStorage.setItem('email', res.profileObj.email);
         localStorage.setItem('token', res.tokenId);
-        setLogged(true);
         refreshTokenSetup(res);
         axios.post('https://tinygram2021.appspot.com/_ah/api/myApi/v1/friend/'+res.profileObj.email,res.profileObj )
             .then(response => {
-                console.log(response);
+                setLogged(true);
             })
             .catch(error => {
                 console.error('There was an error!', error);

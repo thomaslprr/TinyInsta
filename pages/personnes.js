@@ -3,7 +3,6 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import ProTip from '../src/ProTip';
 import Link from '../src/Link';
 import Copyright from '../src/Copyright';
 import ListePersonnes from "../src/ListePersonnes";
@@ -13,7 +12,6 @@ import {useState} from "react";
 import AddIcon from "@mui/icons-material/Add";
 import handleCheckToken from "../utils/checkToken";
 import {refreshTokenSetup} from "../utils/refreshToken";
-import Router from "next/router";
 import {GoogleLogin} from "react-google-login";
 
 export default function Personnes() {
@@ -25,11 +23,11 @@ export default function Personnes() {
     const onSuccess = (res) => {
         localStorage.setItem('email', res.profileObj.email);
         localStorage.setItem('token', res.tokenId);
-        setLogged(true);
         refreshTokenSetup(res);
         axios.post('https://tinygram2021.appspot.com/_ah/api/myApi/v1/friend/'+res.profileObj.email,res.profileObj )
             .then(response => {
                 console.log(response);
+                setLogged(true);
             })
             .catch(error => {
                 console.error('There was an error!', error);
