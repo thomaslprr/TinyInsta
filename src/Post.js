@@ -49,6 +49,7 @@ export default function RecipeReviewCard({pseudo,date,img,description,cptJaime,a
         }
         title={pseudo}
         subheader={new Date(date).toLocaleString()}
+        style={{color:"black"}}
       />
       <CardMedia
         component="img"
@@ -65,8 +66,9 @@ export default function RecipeReviewCard({pseudo,date,img,description,cptJaime,a
       <CardActions disableSpacing>
 
           {showLikeButton()}
-
+            <Typography color="text.secondary" >
           {cptJaime} J'aime
+            </Typography>
       </CardActions>
     </Card>
   );

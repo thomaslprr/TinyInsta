@@ -65,7 +65,7 @@ export default function ListePersonnes({data}) {
 
         return (
 
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} style={{backgroundColor:'black', color: 'black',}}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
