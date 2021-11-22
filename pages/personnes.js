@@ -17,14 +17,13 @@ import {GoogleLogin} from "react-google-login";
 export default function Personnes() {
 
 
-
     const clientId = '336706060084-qql5uihgm5k7nremguao6rfeeh1mptnd.apps.googleusercontent.com';
     const [txt,setTxt] = useState("Veuillez vous connecter avec google !");
     const onSuccess = (res) => {
         localStorage.setItem('email', res.profileObj.email);
         localStorage.setItem('token', res.tokenId);
         refreshTokenSetup(res);
-        axios.post('https://tinygram2021.appspot.com/_ah/api/myApi/v1/friend/'+res.profileObj.email,res.profileObj )
+        axios.post('https://tinygram2021.appspot.com/_ah/api/myApi/v1/getUser',res.profileObj )
             .then(response => {
                 console.log(response);
                 setLogged(true);
@@ -128,7 +127,7 @@ export default function Personnes() {
         </Button>
           {affichage()}
 
-        <Copyright />
+        <Copyright/>
       </Box>
     </Container>
   );

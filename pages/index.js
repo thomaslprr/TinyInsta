@@ -31,9 +31,10 @@ export default function Index() {
         localStorage.setItem('email', res.profileObj.email);
         localStorage.setItem('token', res.tokenId);
         refreshTokenSetup(res);
-        axios.post('https://tinygram2021.appspot.com/_ah/api/myApi/v1/friend/'+res.profileObj.email,res.profileObj )
+        axios.post('https://tinygram2021.appspot.com/_ah/api/myApi/v1/getUser',res.profileObj )
             .then(response => {
                 setLogged(true);
+                setUser(JSON.parse(response.request.response).properties);
             })
             .catch(error => {
                 console.error('There was an error!', error);
@@ -102,23 +103,9 @@ export default function Index() {
             });
     };
 
-    const basicInfo = async () => {
-        const mail = await handleCheckToken();
-        axios.post('https://tinygram2021.appspot.com/_ah/api/myApi/v1/friend/'+mail,null )
-            .then(response => {
-                let res = JSON.parse(response.request.response);
-                setUser(res.properties);
-                console.log("ok 2");
-
-            })
-            .catch(error => {
-                console.error('There was an error!', error);
-            });
-    };
 
   useEffect(()=>{
       if(logged){
-          basicInfo();
           handleShowMore();
       }
 
@@ -197,7 +184,7 @@ export default function Index() {
               </div>
           )
       }
-  }
+  };
 
   return (
     <Container maxWidth="sm">

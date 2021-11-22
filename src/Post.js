@@ -30,7 +30,15 @@ export default function RecipeReviewCard({pseudo,date,img,description,cptJaime,a
                 <FavoriteBorderIcon />
             </IconButton>);
         }
-    }
+    };
+
+    const handleDoubleClick = (e) => {
+      if(!alreadyLike){
+          if(e.detail>=2){
+              addLike(date,email);
+          }
+      }
+    };
 
   return (
     <Card sx={{ maxWidth: 345,mb:4 }}>
@@ -47,6 +55,7 @@ export default function RecipeReviewCard({pseudo,date,img,description,cptJaime,a
         height="194"
         image={img}
         alt="Paella dish"
+        onClick={handleDoubleClick}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
