@@ -25,7 +25,7 @@ import {GoogleLogin} from "react-google-login";
 export default function Index() {
 
     const clientId = '336706060084-qql5uihgm5k7nremguao6rfeeh1mptnd.apps.googleusercontent.com';
-    const [txt,setTxt] = useState("Veuillez vous connecter avec google !");
+    const [txt,setTxt] = useState("");
     const onSuccess = (res) => {
         localStorage.setItem('email', res.profileObj.email);
         localStorage.setItem('token', res.tokenId);
@@ -141,7 +141,7 @@ export default function Index() {
           return (<div>
               <GoogleLogin
                   clientId={clientId}
-                  buttonText="Login"
+                  buttonText="Se connecter avec Google"
                   onSuccess={onSuccess}
                   onFailure={onFailure}
                   cookiePolicy={'single_host_origin'}

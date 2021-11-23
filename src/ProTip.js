@@ -12,9 +12,11 @@ function LightBulbIcon(props) {
 
 export default function ProTip() {
   return (
-    <Typography sx={{ mt: 6, mb: 3 }} >
+      <div style={{width:500,margin:'auto'}}>
+    <Typography sx={{ mt: 6, mb: 3 }} align="center">
       <LightBulbIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
       Info: Tu peux double taper sur la photo pour l'aimer 😉
     </Typography>
+      </div>
   );
 }
