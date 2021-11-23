@@ -17,8 +17,7 @@
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-google-login": "^5.2.2",
-    "uuid": "^8.3.2"
+    "react-google-login": "^5.2.2"
   },
   "scripts": {
     "dev": "next dev",
@@ -26,5 +25,8 @@
     "start": "next start -p 8080",
     "deploy": "yarn build && gcloud app deploy",
     "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+  },
+  "devDependencies": {
+    "uuid": "^8.3.2"
   }
 }
