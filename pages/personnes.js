@@ -17,7 +17,7 @@ import {GoogleLogin} from "react-google-login";
 export default function Personnes() {
 
 
-    const clientId = "336706060084-kpg01e5sjp6dfsu79su830uiif2nbgqe.apps.googleusercontent.com";
+    const clientId = "336706060084-887jpcku3dm7f2bf4qc7onefru1aptln.apps.googleusercontent.com";
     const [txt,setTxt] = useState("");
     const onSuccess = (res) => {
         localStorage.setItem('email', res.profileObj.email);
