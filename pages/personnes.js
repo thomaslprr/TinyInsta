@@ -120,7 +120,7 @@ export default function Personnes() {
     <Container>
       <Box sx={{ my: 4 }}>
           <Typography variant="h4" component="h1" gutterBottom>
-              TinyInsta
+              TinyGram
           </Typography>
           <Typography variant="h5" component="h1" gutterBottom>
               Personnes
