@@ -4,7 +4,7 @@ import { GoogleLogout } from 'react-google-login';
 
 const Logout = () => {
 
-    const clientId = '336706060084-qql5uihgm5k7nremguao6rfeeh1mptnd.apps.googleusercontent.com';
+    const clientId = CLIENT_ID;
 
     const onSuccess = () => {
         localStorage.removeItem("email");

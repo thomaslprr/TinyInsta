@@ -23,7 +23,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 8080",
-    "deploy": "yarn build && gcloud app deploy --project nextjs-deploy",
+    "deploy": "yarn build && gcloud app deploy",
     "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
   },
   "devDependencies": {
