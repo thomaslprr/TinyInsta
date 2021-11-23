@@ -19,7 +19,6 @@ import Grid from "@mui/material/Grid";
 import Logout from "../src/Logout";
 import handleCheckToken from "../utils/checkToken";
 import { refreshTokenSetup } from '../utils/refreshToken';
-import Router from "next/router";
 import {GoogleLogin} from "react-google-login";
 
 
@@ -114,7 +113,7 @@ export default function Index() {
   const showPost = (bool) => {
       if(bool){
           return (
-              <div>
+              <div style={{ width: 400, margin: 'auto' }}>
               <LoadPost/>
               <LoadPost/>
               <LoadPost/>
@@ -124,7 +123,7 @@ export default function Index() {
           )
       }else{
           return(
-              <div>
+              <div style={{ width: 400, margin: 'auto' }}>
                   {response.map((row) => {
                     return <RecipeReviewCard key={row.properties.email+""+row.properties.date} pseudo={row.properties.pseudo} date={row.properties.date}
                   img={row.properties.image} description={row.properties.description} cptJaime={row.properties.cptLikes}
@@ -168,19 +167,24 @@ export default function Index() {
       <p>Abonnés : {user.cptFollower}</p>
       </Grid>
       </Grid>
-
+     <Grid container spacing={3}>
+         <Grid item xs>
       <Creation/>
+         </Grid>
+         <Grid item xs>
       <Button component={Link} noLinkStyle href="/personnes" color="primary" endIcon={<PersonAddIcon/>}>
       Ajouter des personnes
       </Button>
-
+         </Grid>
+     </Grid>
+                  <br/>
       {showPost(loading)}
 
-      {more ?<Button variant="contained" endIcon={<AddIcon />} onClick={handleShowMore}>
+      {more ?<div style={{ width: 400, margin: 'auto' }}><Button variant="contained" endIcon={<AddIcon />} onClick={handleShowMore} style={{ width: 400, margin: 'auto'}}>
       Voir plus
-      </Button> : <div></div> }
+      </Button></div> : <div></div> }
 
-      <ProTip />
+      <ProTip/>
               </div>
           )
       }

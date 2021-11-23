@@ -119,12 +119,16 @@ export default function Personnes() {
   return (
     <Container>
       <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Personnes
-        </Typography>
+          <Typography variant="h4" component="h1" gutterBottom>
+              TinyInsta
+          </Typography>
+          <Typography variant="h5" component="h1" gutterBottom>
+              Personnes
+          </Typography>
         <Button variant="contained" component={Link} noLinkStyle href="/">
           Retour
         </Button>
+          <br/><br/>
           {affichage()}
 
         <Copyright/>

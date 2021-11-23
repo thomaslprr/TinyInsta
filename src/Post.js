@@ -10,14 +10,9 @@ import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import {useEffect} from "react";
 
 
 export default function RecipeReviewCard({pseudo,date,img,description,cptJaime,addLike,email,alreadyLike,profilImage}) {
-
-    useEffect(()=> {
-        console.log(description+"    a aimé : "+alreadyLike);
-    },[])
 
 
     const showLikeButton = () => {
@@ -41,7 +36,7 @@ export default function RecipeReviewCard({pseudo,date,img,description,cptJaime,a
     };
 
   return (
-    <Card sx={{ maxWidth: 345,mb:4 }}>
+    <Card sx={{ maxWidth: 400,mb:4 }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe" src={profilImage}/>
@@ -53,10 +48,14 @@ export default function RecipeReviewCard({pseudo,date,img,description,cptJaime,a
       />
       <CardMedia
         component="img"
-        height="194"
+        height="100%"
+        width="100%"
         image={img}
         alt="Paella dish"
         onClick={handleDoubleClick}
+        style={{
+            maxHeight: 400,
+        }}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">

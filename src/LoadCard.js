@@ -12,7 +12,7 @@ import CardActions from "@mui/material/CardActions";
 
 export default function LoadPost() {
     return (
-        <Card sx={{ maxWidth: 345, m: 2 }}>
+        <Card sx={{ maxWidth: 400, m: 2 }}>
             <CardHeader
                 avatar={<Skeleton animation="wave" variant="circular" width={40} height={40} />}
                 title={
@@ -32,7 +32,7 @@ export default function LoadPost() {
                 }
             />
 
-                <Skeleton sx={{ height: 190 }} animation="wave" variant="rectangular" />
+                <Skeleton sx={{ height: 400 }} animation="wave" variant="rectangular" />
 
 
             <CardContent>
