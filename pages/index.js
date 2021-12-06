@@ -58,7 +58,7 @@ export default function Index() {
 
    const handleShowMore = async () => {
        const email = await handleCheckToken();
-       axios.get('https://tinygram2021.appspot.com/_ah/api/myApi/v1/post/' + email + '/' + offset)
+       axios.get('https://tinygram2021.appspot.com/_ah/api/myApi/v1/post/' + email + '/' + offset+'/15')
            .then(result => {
                let res = JSON.parse(result.request.response);
                setResponse(response.concat(res.items));
